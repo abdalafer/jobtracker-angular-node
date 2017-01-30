@@ -1,0 +1,30 @@
+<div class="modal fade" id="jobTaskDetailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Task Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form role="form" class="new_job_task" ng-submit="addJobTask()">
+
+                    <div class="form-group">
+                        <label class="control-label" for="job_task_detail_title">Title</label>
+                        <input ng-model="job_task_detail.title" id="job_task_detail_title" class="form-control" type="text">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="job_task_detail_notes">Notes</label>
+                        <textarea ng-model="job_task_detail.notes" id="job_task_detail_notes" class="form-control"></textarea>
+                    </div>
+
+                    <input type="submit" name="commit" value="Submit" class="hidden btn btn-default">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

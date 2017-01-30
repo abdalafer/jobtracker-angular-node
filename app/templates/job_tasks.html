@@ -1,0 +1,103 @@
+<h3 class="text-center">{{job.title}} Tasks</h3>
+
+<button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#newJobTaskModal">
+    New Task
+</button>
+
+<hr/>
+
+<div id="customer_list_section" ng-init="getJobTasks()">
+    <ul class="nav nav-tabs">
+        <li class="active"><a id='created_tab' data-toggle="tab" data-target="#created" href="">Pending <span class="badge">{{pending_tasks.length}}</span></a></li>
+        <li><a id='started_tab' data-toggle="tab" data-target="#started" href="">Started <span class="badge">{{started_tasks.length}}</span></a></li>
+        <li><a id='finished_tab' data-toggle="tab" data-target="#finished" href="">Finished <span class="badge">{{finished_tasks.length}}</span></a></li>
+    </ul>
+
+    <div class="list-group">
+
+        <div class="tab-content tasks_tab_content">
+            <div id="created" class="tab-pane fade in active">
+                <h3>Pending</h3>
+
+                <div ng-repeat="pending_task in pending_tasks | orderBy:'- created_at'">
+                    <div class="list-group-item">
+                        <input class="btn btn-default" type="submit" value="X" ng-click="deleteJobTask(pending_task.uuid)">
+                        <input class="btn btn-success" type="submit" value="Start" ng-click="startJobTask(pending_task.uuid)">
+
+                        <button type="button" class="btn btn-primary task_button" ng-click="getJobTask(pending_task.uuid)">
+                            {{pending_task.title}}
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="started" class="tab-pane fade in">
+                <h3>Started</h3>
+
+                <div ng-repeat="started_task in started_tasks | orderBy:'- created_at'">
+                    <div class="list-group-item">
+                        <input class="btn btn-default" type="submit" value="X" ng-click="deleteJobTask(started_task.uuid)">
+                        <input class="btn btn-success" type="submit" value="Finish" ng-click="finishJobTask(started_task.uuid)">
+                        <button type="button" class="btn btn-primary task_button" ng-click="getJobTask(started_task.uuid)">
+                            {{started_task.title}}
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="finished" class="tab-pane fade in">
+                <h3>Finished</h3>
+
+                <div ng-repeat="finished_task in finished_tasks | orderBy:'- created_at'">
+                    <div class="list-group-item">
+                        <input class="btn btn-default" type="submit" value="X" ng-click="deleteJobTask(finished_task.uuid)">
+
+                        <button type="button" class="btn btn-primary task_button" ng-click="getJobTask(finished_task.uuid)">
+                            {{finished_task.title}}
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- New Job Modal -->
+<div class="modal fade" id="newJobTaskModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">Add a Job Task</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form role="form" class="new_job_task" ng-submit="addJobTask()">
+
+                    <div class="form-group">
+                        <label class="control-label" for="job_task_title">Title</label>
+                        <input ng-model="job_task.title" class="form-control" type="text"  id="job_task_title">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="job_task_notes">Notes</label>
+                        <textarea ng-model="job_task.notes" class="form-control" id="job_task_notes"></textarea>
+                    </div>
+
+                    <input type="submit" name="commit" value="Submit" class="btn btn-default">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Task Modal -->
+<div task-detail-view></div>

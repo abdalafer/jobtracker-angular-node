@@ -1,0 +1,88 @@
+<h3 class="text-center">{{customer.full_name}}</h3>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-block btn-alert" data-toggle="modal" data-target="#customerDetailModal">
+    Customer Details
+</button>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#newCustomerJobModal">
+    New Job
+</button>
+
+<hr/>
+
+<div id="customer_list_section" ng-init="getCustomerJobs()">
+    <div class="list-group">
+        <div ng-repeat="job in jobs">
+            <a href="#!/a_job/{{job.uuid}}/tasks" class="list-group-item">{{job.title}}</a>
+        </div>
+    </div>
+</div>
+
+<!-- Customer Detail Modal -->
+<!-- TODO Implement customer update backend call -->
+<div class="modal fade" id="customerDetailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"> Add a Customer Job</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form role="form" class="new_customer" ng-submit="addCustomer()">
+                    <div class="form-group">
+                        <label class="control-label" for="customer_full_name">Full name</label>
+                        <input ng-model="customer.full_name" class="form-control" type="text"  id="customer_full_name">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="customer_address">Address</label>
+                        <input ng-model="customer.address" class="form-control" type="text" id="customer_address">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="customer_notes">Notes</label>
+                        <textarea ng-model="customer.notes" class="form-control" id="customer_notes"></textarea>
+                    </div>
+
+                    <input type="submit" name="commit" value="Submit" class="btn btn-default">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- New Job Modal -->
+<div class="modal fade" id="newCustomerJobModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">Add a Customer Job</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form role="form" class="new_customer" ng-submit="addJob()">
+
+                    <div class="form-group">
+                        <label class="control-label" for="job_title">Job Title</label>
+                        <input ng-model="job.title" class="form-control" type="text"  id="job_title">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="job_notes">Notes</label>
+                        <textarea ng-model="job.notes" class="form-control" id="job_notes"></textarea>
+                    </div>
+
+                    <input type="submit" name="commit" value="Submit" class="btn btn-default">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

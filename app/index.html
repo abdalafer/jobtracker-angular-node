@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="bower_components/bootstrap-css/css/bootstrap.min.css">
+  <link rel="stylesheet" href="app.css">
+  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+
+  <!--[if lt IE 7]>
+  <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+  <div class="container">
+	<div ng-class="" ng-app="jobtracker">
+      <!--[if lt IE 7]>      <div ng-app="jobtracker" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+      <!--[if IE 7]>         <div ng-app="jobtracker" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+      <!--[if IE 8]>         <div ng-app="jobtracker" class="no-js lt-ie9"> <![endif]-->
+      <!--[if gt IE 8]><!--> <div ng-app="jobtracker" class="no-js"> <!--<![endif]-->
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="hidden navbar-header">
+            <%= link_to 'JobTracker', '/customers', class: 'navbar-brand' %>
+          </div>
+          <br/>
+          <div class="pull-left">
+            <div angular-back></div>
+          </div>
+          <div class="pull-right">
+            <input type="button" class="btn btn-primary" ng-click="userLogout()" value="Logout">
+          </div>
+        </div>
+      </nav>
+
+      <div class="view-container">
+              <div ng-view class="view-frame animate-view">
+
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <!-- TODO angular does not like jquery, remove jquery and use angular ui(bootstrap) directives -->
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+  <script src="bower_components/bootstrap-css/js/bootstrap.min.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="app.js"></script>
+  <script src="components/version/version.js"></script>
+  <script src="components/version/version-directive.js"></script>
+  <script src="components/version/interpolate-filter.js"></script>
+</body>
+</html>
